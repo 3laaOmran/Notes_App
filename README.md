@@ -1,2 +1,2 @@
 # notes_app
- sqflite & bloc
+ Hive & bloc
