@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -29,17 +28,20 @@ class NoteItem extends StatelessWidget {
                 vertical: 16,
               ),
               child: Text(
-                "build your first note with flutter",
+                "You can use Expanded widget only with flex widgets like Row or Column not with Stack",
                 style: TextStyle(
                   fontSize: 18,
                   color: Colors.black.withOpacity(0.5),
                 ),
               ),
             ),
-            trailing: Icon(
-              FontAwesomeIcons.trash,
-              color: Colors.black,
-              size: 24,
+            trailing:  IconButton(
+              onPressed: (){},
+              icon:const Icon(
+                FontAwesomeIcons.trash,
+                color: Colors.black,
+                size: 24,
+              ),
             ),
           ),
           Padding(
