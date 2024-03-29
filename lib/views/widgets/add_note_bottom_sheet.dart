@@ -37,6 +37,9 @@ class _AddNoteFormState extends State<AddNoteForm> {
       autovalidateMode: autovalidateMode,
       child: Column(
         children: [
+          const SizedBox(
+            height: 7.0,
+          ),
           CustomTextFormField(
             onSaved: (value) {
               title = value;
@@ -54,7 +57,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
             labelText: "Note",
           ),
           const SizedBox(
-            height: 120.0,
+            height: 80.0,
           ),
           MaterialButton(
             minWidth: MediaQuery.of(context).size.width,
