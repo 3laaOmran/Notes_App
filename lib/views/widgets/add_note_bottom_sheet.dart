@@ -10,24 +10,25 @@ class AddNoteBottomSheet extends StatelessWidget {
   @override
   // widget must be immutable but state can be changed so we can add variables with out final key word to state full state not in wiget itself.
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 10),
-      child: SingleChildScrollView(
-        child: BlocConsumer<AddNoteCubit, AddNoteState>(
-          listener: (context, state) {
-            if (state is AddNoteSuccess) {
-              Navigator.pop(context);
-            }
-            if (state is AddNoteFailure) {
-              print("Failed ${state.errorMessage}");
-            }
-          },
-          builder: (context, state) {
-            return ModalProgressHUD(
-                inAsyncCall: state is AddNoteLoading ? true : false,
-                child: const AddNoteForm());
-          },
-        ),
+    return BlocProvider(
+      create: (context) => AddNoteCubit(),
+      child: BlocConsumer<AddNoteCubit, AddNoteState>(
+        listener: (context, state) {
+          if (state is AddNoteSuccess) {
+            Navigator.pop(context);
+          }
+          if (state is AddNoteFailure) {
+            print("Failed ${state.errorMessage}");
+          }
+        },
+        builder: (context, state) {
+          return ModalProgressHUD(
+              inAsyncCall: state is AddNoteLoading ? true : false,
+              child: const Padding(
+                padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 10),
+                child: SingleChildScrollView(child: AddNoteForm()),
+              ));
+        },
       ),
     );
   }
