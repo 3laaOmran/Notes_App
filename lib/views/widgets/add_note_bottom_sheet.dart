@@ -22,12 +22,13 @@ class AddNoteBottomSheet extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          return ModalProgressHUD(
-              inAsyncCall: state is AddNoteLoading ? true : false,
-              child: const Padding(
-                padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 10),
-                child: SingleChildScrollView(child: AddNoteForm()),
-              ));
+          return AbsorbPointer(
+            absorbing: state is AddNoteLoading ? true : false,
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 10),
+              child: SingleChildScrollView(child: AddNoteForm()),
+            ),
+          );
         },
       ),
     );

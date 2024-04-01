@@ -49,39 +49,69 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(
             height: 80.0,
           ),
-          MaterialButton(
-            minWidth: MediaQuery.of(context).size.width,
-            height: 45.0,
-            color: Colors.cyan[300],
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            onPressed: () {
-              if (formKey.currentState!.validate()) {
-                formKey.currentState!.save();
+          BlocBuilder<AddNoteCubit, AddNoteState>(
+            builder: (context, state) {
+              return CustomButton(
+                isLoading: state is AddNoteLoading ? true : false,
+                onpressed: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
 
-                var noteModel = NoteModel(
-                  title: title!,
-                  content: subTitle!,
-                  date: DateTime.now().toString(),
-                  color: Colors.blue.value,
-                );
-                BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-              } else {
-                autovalidateMode = AutovalidateMode.always;
-                setState(() {});
-              }
+                    var noteModel = NoteModel(
+                      title: title!,
+                      content: subTitle!,
+                      date: DateTime.now().toString(),
+                      color: Colors.blue.value,
+                    );
+                    BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+                  } else {
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
+                  }
+                },
+              );
             },
-            child: const Text(
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  const CustomButton({
+    super.key,
+    required this.onpressed,
+    this.isLoading = false,
+  });
+  final void Function() onpressed;
+  final bool isLoading;
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      onPressed: onpressed,
+      minWidth: MediaQuery.of(context).size.width,
+      height: 45.0,
+      color: Colors.cyan[300],
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: isLoading
+          ? const SizedBox(
+              height: 15,
+              width: 15,
+              child: CircularProgressIndicator(
+                color: Colors.black,
+                strokeWidth: 2.0,
+              ),
+            )
+          : const Text(
               'Add',
               style: TextStyle(
                 fontSize: 18.0,
                 color: Colors.black,
               ),
             ),
-          ),
-        ],
-      ),
     );
   }
 }

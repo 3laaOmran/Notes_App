@@ -5,7 +5,6 @@ import 'package:notes_app/constants/constants.dart';
 import 'package:notes_app/views/notes_app_view.dart';
 import 'package:notes_app/bloc_observer.dart';
 
-import 'logic/add_note_cubit/add_note_cubit.dart';
 import 'models/note_model.dart';
 
 void main() async {
