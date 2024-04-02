@@ -28,7 +28,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
       child: Column(
         children: [
           const SizedBox(
-            height: 7.0,
+            height: 20.0,
           ),
           CustomTextFormField(
             onSaved: (value) {
@@ -47,7 +47,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
             labelText: "Note",
           ),
           const SizedBox(
-            height: 80.0,
+            height: 20.0,
           ),
           BlocBuilder<AddNoteCubit, AddNoteState>(
             builder: (context, state) {
@@ -71,6 +71,9 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 },
               );
             },
+          ),
+          const SizedBox(
+            height: 15.0,
           ),
         ],
       ),
