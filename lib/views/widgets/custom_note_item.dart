@@ -18,7 +18,9 @@ class NoteItem extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return const EditNoteView();
+              return  EditNoteView(
+                note: note,
+              );
             },
           ),
         );
@@ -56,6 +58,7 @@ class NoteItem extends StatelessWidget {
                 onPressed: () {
                   // delete comes from noteModel extends Hiveobject
                   note.delete();
+                  BlocProvider.of<NotesCubit>(context).fetchAllNotes();
                 },
                 icon: const Icon(
                   FontAwesomeIcons.trash,
